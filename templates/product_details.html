@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>{{ product.name }} - Product Detail</title>
+</head>
+<body>
+    <div class="product-detail-container">
+        <div class="product-detail-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-detail-details">
+            <h3>{{ product.name }}</h3> 
+            <p class="product-detail-price">₹{{ product.price }}</p>
+            <p class='product-detail-discription'>{{ product.description }}</p>
+            <button class='button-cart'>
+                <a href="{% url 'cart:add_cart' product_id=product.id %}">
+                    <i class="fas fa-shopping-cart"></i> Add to cart
+                </a>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

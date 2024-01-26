@@ -1,0 +1,45 @@
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Responsive Navbar</title>
+</head>
+<body>
+    <nav class='nav-bar'>
+        <div class='logo'>
+            <a href="{% url 'productapp:allproducts' %}"><img src="{% static "img/logo.png" %}" alt="Logo"></a>
+            <a href="{% url 'productapp:allproducts' %}" id='logo'>New2U</a>
+        </div>
+        <div class='nav-link-div'>
+            <div class="dropdown">
+                <a class="nav-link">Products</a>
+                <div class="dropdown-content">
+                    {% for product in links %}
+                        <a href="{{ product.get_url }}">{{ product.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="#" class="nav-link">Wishlist</a>
+            <a href="#" class="nav-link">Orders</a>
+            <a href="#" class="nav-link">Login</a>
+        </div>
+
+        <div class='search-cart'>
+            <form action="{% url 'search_app:SearchResult' %}" method="get" class='nav-form'>
+                {% csrf_token %}
+                <input type="text" name="q" class="search-input" placeholder="Search...">
+                <button type="submit" class="fas fa-search" style='border: none; background-color: transparent; color: white'></button>
+            </form>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {%if item_count %}
+                <a href='{% url "cart:cart_detail" %}' style='color: white'>
+                    <i class="fas fa-shopping-cart"></i> {{item_count}}
+                </a>
+            {% endif%}
+        </div>
+    </nav>
+</body>
+</html>

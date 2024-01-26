@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your existing head content... -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #header {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        #main-content {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product-card {
+            background-color: red;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            display: block;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-card p {
+            margin: 10px 0;
+            color: #555;
+            padding: 10px;
+        }
+
+        .product-card-price, .product-card-stock {
+            font-size: 16px;
+            color: #777;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        All Products
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }}
+    {% else %}
+        See Our New collection
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div>
+            <div>
+                <a href="{% url 'productapp:allproducts' %}"> Our New Products</a>
+            </div>
+        </div>
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVUO1IP1RqdKRHCV3Z7bBAE7DX0_4XgfW4fw&usqp=CAU">
+            <br>
+            <p> {{category.name}} </p>
+            <br>
+            <p> {{category.description}} </p>
+            <h1>hii hello</h1>
+        </div>
+    {% else %}
+        <div>
+            
+            <h1></h1>
+        </div>
+    {% endif %}
+
+    {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'productapp:product_detail' product_slug=product.slug %}">{{ product.name }}</a>
+            <p>{{ product.description }}</p>
+            <div class="product-card-price">Price: ${{ product.price }}</div>
+            <p>Stock: {{ product.stock }}</p>
+            {% if product.available %}
+                <p>Available: Yes</p>
+            {% else %}
+                <p>Available: No</p>
+            {% endif %}
+            <a><img src="{{ product.image.url }}" alt="{{ product.name }}"></a>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% for product in products %}
+    <div class="product-card1">
+        <a href="{% url 'productapp:product_detail' product_slug=product.slug %}">{{ product.name }}</a>
+        <p>{{ product.description }}</p>
+        <div class="product-card-price1">Price: ${{ product.price }}</div>
+        <div class="product-card-stock1">Stock: {{ product.stock }}</div>
+        {% if product.available %}
+            <p>Available: Yes</p>
+        {% else %}
+            <p>Available: No</p>
+        {% endif %}
+        <!-- Correct the image tag -->
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+{% endfor %}
+</body>
+</html>
+
+

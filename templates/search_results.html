@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div>
+        <h1>Showing results for "{{ query }}":</h1>
+    </div>
+    <div class="container">
+        {% if results %}
+            {% for product in results %}
+            <div class="product-card">
+                <div class='image-div'>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" clas='product-card-img'>
+                </div>
+                <a href="{% url 'productapp:product_detail' product_slug=product.slug %}">{{ product.name }}</a>
+                <div class="product-card-price">₹{{ product.price }}</div>
+                    <button class='button-cart'><i class="fas fa-shopping-cart"></i> Add to cart </button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}

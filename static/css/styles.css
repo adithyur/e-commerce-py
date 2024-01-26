@@ -1,0 +1,107 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+nav {
+    background-color: #333;
+    text-align: center;
+    display: flex;
+    height: 90px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar{
+  background-color: #051922;
+}
+
+.logo{
+  display: flex;
+  margin-left: 12%;
+  align-items: center;
+  text-align: center;
+}
+
+#logo{
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: rgb(255, 115, 0);
+  padding-left: 10px;
+}
+
+nav img {
+    max-height: 40px;
+} 
+
+.nav-link-div{
+  font-family: 'Poppins', sans-serif;
+  margin-left: 2%;
+  font-weight: bold;
+}
+
+.search-cart{
+  color: white; 
+  margin-right: 12%;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 150px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.5s, box-shadow 0.3s;
+  padding: 15px;
+}
+
+.nav-link:hover {
+  color: orangered;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+ 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #051922;
+  font-family: 'Poppins', sans-serif;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 700;
+  font-size: small;
+}
+
+.dropdown-content a:hover {
+  color: orangered;
+}
+
+
